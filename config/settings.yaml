@@ -1,0 +1,29 @@
+paths:
+  raw_dir: # Goodreads download directory
+  interim_dir: # Temporary processing directory
+  processed_dir: # Final processed data
+  models_dir: models
+
+files:
+  books: goodreads_books.json.gz
+  authors: goodreads_book_authors.json.gz
+  genres: goodreads_book_genres_initial.json.gz
+  works: goodreads_book_works.json.gz
+  interactions: goodreads_interactions.csv
+  book_id_map: book_id_map.csv
+
+filtering:
+  min_book_interactions: 30
+  min_user_interactions: 15
+  min_rating: 1
+  max_rating: 5
+
+recommendation:
+  top_n: 20
+  candidate_pool_size: 500
+  weights:
+    collaborative: 0.40
+    content: 0.30
+    rating_quality: 0.15
+    preference_match: 0.10
+    novelty: 0.05
