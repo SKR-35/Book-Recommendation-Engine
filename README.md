@@ -28,6 +28,42 @@ Built for large datasets and commodity hardware (Windows + 8 GB RAM).
 
 ---
 
+## Data Source
+
+This project uses the **UCSD Goodreads Book Graph Dataset**, collected from publicly visible Goodreads shelves in late 2017.
+
+The full dataset includes:
+
+- book, author, work and genre metadata
+- anonymized user-book interactions
+- public shelf information
+- optional review datasets
+
+Official dataset page:
+
+<https://cseweb.ucsd.edu/~jmcauley/datasets/goodreads.html>
+
+The complete book graph contains approximately:
+
+- 2.36 million books
+- 876 thousand users
+- 228 million user-book interactions
+
+This project primarily uses:
+
+```text
+goodreads_books.json.gz
+goodreads_book_authors.json.gz
+goodreads_book_works.json.gz
+goodreads_book_genres_initial.json.gz
+goodreads_interactions.csv
+book_id_map.csv
+```
+
+The dataset is provided for academic use. Please review the original dataset terms before redistribution or commercial use.
+
+---
+
 # Architecture
 
 ```text
@@ -211,6 +247,31 @@ Current implementation processes approximately
 - 670k users
 
 while remaining usable on an ordinary laptop with 8 GB RAM through chunked processing and memory mapping.
+
+---
+
+## Installation
+
+Create and activate the Conda environment:
+
+```bash
+conda create -n book-rec python=3.12 -y
+conda activate book-rec
+```
+
+Install the standard Python dependencies:
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+On Windows, `hnswlib` and `implicit` are more reliable when installed from `conda-forge`:
+
+```bash
+conda install -c conda-forge hnswlib implicit -y
+```
+
+These two packages are intentionally not listed in `requirements.txt` because their pip installation may require local compilation tools on Windows.
 
 ---
 
